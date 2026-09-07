@@ -1,7 +1,6 @@
 'use client';
 // 메인 페이지 (4.0 위젯 시스템) — 고정 요소(배너·회원정보창) + 자유 배치 위젯 + 편집모드
 import React, { useEffect, useState } from 'react';
-import Script from 'next/script';
 import { useMainStore, WidgetConf, WidgetType, WIDGET_META, MULTI_TYPES, widgetLabel } from '@/lib/mainStore';
 import { WidgetFrame } from '@/components/main/WidgetFrame';
 import { renderWidget } from '@/components/main/widgets';
@@ -118,9 +117,6 @@ export default function MainPage() {
 
   return (
     <section className="page page-main-wrap" onClick={() => setCtx(null)}>
-      {/* 눈 내리는 효과 스크립트 추가 */}
-      <Script src="https://app.embed.im/snow.js" defer />
-
       <div ref={gridRef} className={`main-grid ${absMode ? 'abs' : ''} ${gridOn ? 'gridlines' : ''}`}
         style={{ marginTop: 12, ...(canvasH ? { height: canvasH } : {}) }}>
         {absMode ? (

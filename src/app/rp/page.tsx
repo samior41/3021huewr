@@ -407,7 +407,7 @@ ${rows}
                         <Face ch={ch} className="face" />
                         <div>
                           <div className="who">{name}</div>
-                          <div className="bub">{m.text}</div>
+                          <div className="bub" style={{ textAlign: 'left', whiteSpace: 'pre-wrap' }}>{m.text}</div>
                           <div style={{ fontSize: 9, color: 'var(--faint)', marginTop: 3 }}>{fmtHM(m.date)}</div>
                         </div>
                         {mine && (

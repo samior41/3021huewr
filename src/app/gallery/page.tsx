@@ -13,7 +13,7 @@ import { EditableDesc, PageTitle } from '@/components/ui/PageText';
 import { useBoardSettings, boardBadgeStyle } from '@/lib/boardStore';
 import { useMainStore } from '@/lib/mainStore';
 import { useCardSort, mergeOrder } from '@/lib/cardSort';
-import { useMenuSettings, canGalleryWrite } from '@lib/menuPerm';
+import { useMenuSettings, canGalleryWrite } from '@/lib/menuPerm';
 const FOLD_LABEL = { spoiler: '스포일러', adult: '수위 주의' };
 
 function BackupPageInner() {

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>9월 26일</title>
+  <script id="enty-theme-boot">
+    (function () {
+      var root = document.documentElement;
+      function readable(hex) {
+        var f = function (i) {
+          var v = parseInt(hex.substr(i, 2), 16) / 255;
+          return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+        };
+        var L = 0.2126 * f(1) + 0.7152 * f(3) + 0.0722 * f(5);
+        return 1.05 / (L + 0.05) >= (L + 0.05) / 0.0567 ? "#ffffff" : "#0d141d";
+      }
+      try {
+        var hash = (location.hash.match(/theme=([^&]+)/) || [])[1];
+        var raw = hash
+          ? atob(decodeURIComponent(hash))
+          : localStorage.getItem("enty-theme") || "{}";
+        var state = JSON.parse(raw) || {};
+        var mode = state.mode || "auto";
+        if (mode === "auto") {
+          mode = matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        root.setAttribute("data-theme", mode);
+        var custom = (state.custom || {})[mode] || {};
+        for (var key in custom) {
+          if (!/^#[0-9a-f]{6}$/i.test(custom[key])) continue;
+          root.style.setProperty("--accent-" + key, custom[key]);
+          if (key === "char1" || key === "char2") {
+            root.style.setProperty("--on-" + key, readable(custom[key]));
+          }
+        }
+      } catch (e) {
+      }
+      try {
+        var saved = JSON.parse(localStorage.getItem("enty-avatars") || "{}");
+        var rules = "";
+        var accounts = {"char1":"@A_0044","char2":"@O_Hayne"};
+        for (var name in accounts) {
+          var gen = root.getAttribute("data-gen-" + name);
+          var url = gen && saved[name + ":" + gen];
+          if (!url || url.slice(0, 11) !== "data:image/") continue;
+          var at = '.ttobot-status[data-account="' + accounts[name] + '"] .ttobot-avatar';
+          rules += at + '{background-image:url("' + url + '");background-size:cover;background-position:center}';
+          rules += at + " img{visibility:hidden}";
+        }
+        if (rules) {
+          var style = document.createElement("style");
+          style.id = "enty-avatar-style";
+          style.textContent = rules;
+          document.head.appendChild(style);
+        }
+      } catch (e) {
+      }
+      try {
+        if (window.self !== window.top) root.classList.add("in-pane");
+      } catch (e) {
+        root.classList.add("in-pane");
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../style/ttobot.css">
+</head>
+<body>
+<div class="ttobot-status" data-account="@O_Hayne">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/803/244/623/547/original/b8b33cbeaa0a7c23.png" alt="profile" /></div>
+    <div class="ttobot-name">해나 라스커</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">[지원할게요.]</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 08:46</div>
+  </div>
+
+<div class="ttobot-status" data-account="@A_0044">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/765/853/920/568/original/6e3458b9bacdaaec.png" alt="profile" /></div>
+    <div class="ttobot-name">제일린 리우</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">[0044 확인, 지시 대기합니다.]</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 08:47</div>
+  </div>
+
+<div class="ttobot-status" data-account="@O_Hayne">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/803/244/623/547/original/b8b33cbeaa0a7c23.png" alt="profile" /></div>
+    <div class="ttobot-name">해나 라스커</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">[죄송해요. 시간이 조금 걸릴 것 같은데, 먼저 진입하셔도 좋아요.]</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 08:49</div>
+  </div>
+
+<div class="ttobot-status" data-account="@A_0044">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/765/853/920/568/original/6e3458b9bacdaaec.png" alt="profile" /></div>
+    <div class="ttobot-name">제일린 리우</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">[네, 야누스부터 보고 있습니다. 저 잘 쳤죠?]</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 08:53</div>
+  </div>
+
+<div class="ttobot-status" data-account="@O_Hayne">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/803/244/623/547/original/b8b33cbeaa0a7c23.png" alt="profile" /></div>
+    <div class="ttobot-name">해나 라스커</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">[네. 칭찬해 드릴게요. 저도 부국장 분석을 완료했는데, 뭐 없나요?]</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 08:56</div>
+  </div>
+
+<div class="ttobot-status" data-account="@A_0044">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/765/853/920/568/original/6e3458b9bacdaaec.png" alt="profile" /></div>
+    <div class="ttobot-name">제일린 리우</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">[바로 가겠습니다. 추천하는 대응 방법 있으신지?]</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 08:58</div>
+  </div>
+
+<div class="ttobot-status" data-account="@O_Hayne">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/803/244/623/547/original/b8b33cbeaa0a7c23.png" alt="profile" /></div>
+    <div class="ttobot-name">해나 라스커</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">[대응 방식은 상관 없는 듯하니, 센 타격으로 방벽을 뚫으시면 될 것 같군요. 행운을 빌어요.]</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 08:59</div>
+  </div>
+
+<div class="ttobot-status" data-account="@A_0044">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/765/853/920/568/original/6e3458b9bacdaaec.png" alt="profile" /></div>
+    <div class="ttobot-name">제일린 리우</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">[네, 지금까진 순조롭습니다.]</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 09:06</div>
+  </div>
+
+<div class="ttobot-status" data-account="@O_Hayne">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/803/244/623/547/original/b8b33cbeaa0a7c23.png" alt="profile" /></div>
+    <div class="ttobot-name">해나 라스커</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">[빗줄기가 거세네요.]</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 09:12</div>
+  </div>
+
+<div class="ttobot-status" data-account="@A_0044">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/765/853/920/568/original/6e3458b9bacdaaec.png" alt="profile" /></div>
+    <div class="ttobot-name">제일린 리우</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(해나를 찾아 고개를 돌린다.) [돌아갈까요?]</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 09:21</div>
+  </div>
+
+<div class="ttobot-status" data-account="@O_Hayne">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/803/244/623/547/original/b8b33cbeaa0a7c23.png" alt="profile" /></div>
+    <div class="ttobot-name">해나 라스커</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(멀리서 한쪽 팔을 든다.) [돌아가야죠.]</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 09:22</div>
+  </div>
+
+<div class="ttobot-status" data-account="@A_0044">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/765/853/920/568/original/6e3458b9bacdaaec.png" alt="profile" /></div>
+    <div class="ttobot-name">제일린 리우</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(급하게 다가간다. 앞에서 멈춰 선 채 해나를 살펴본다.) 다치셨습니까?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 09:24</div>
+  </div>
+
+<div class="ttobot-status" data-account="@O_Hayne">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/803/244/623/547/original/b8b33cbeaa0a7c23.png" alt="profile" /></div>
+    <div class="ttobot-name">해나 라스커</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">세상에, 그 거리에서 그게 보였어요? (능청스럽게 대꾸한다.) 오른팔이 안 올라가네요. 제일린이야말로 다친 곳은 없나요?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 09:29</div>
+  </div>
+
+<div class="ttobot-status" data-account="@A_0044">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/765/853/920/568/original/6e3458b9bacdaaec.png" alt="profile" /></div>
+    <div class="ttobot-name">제일린 리우</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">탈골입니까? (표정이 살짝 굳은 채 고개를 젓는다.) 없습니다. 걷는 건 괜찮으시죠?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 09:38</div>
+  </div>
+
+<div class="ttobot-status" data-account="@O_Hayne">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/803/244/623/547/original/b8b33cbeaa0a7c23.png" alt="profile" /></div>
+    <div class="ttobot-name">해나 라스커</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">아마도요. 라스트 힛을 제일린이 가져갔길래 걱정했는데, 다행이네요. (장난기가 들어 절뚝거리는 시늉을 해 본다.)</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 09:44</div>
+  </div>
+
+<div class="ttobot-status" data-account="@A_0044">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/765/853/920/568/original/6e3458b9bacdaaec.png" alt="profile" /></div>
+    <div class="ttobot-name">제일린 리우</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">네, 자폭 같은 건 안 해서 다행⋯. (당황해서 해나의 왼쪽 팔을 잡으려고 손을 뻗었다가, 시늉인 것을 눈치채자 거둔다. 툴툴거린다.) 놀랐잖습니까.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 10:05</div>
+  </div>
+
+<div class="ttobot-status" data-account="@O_Hayne">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/803/244/623/547/original/b8b33cbeaa0a7c23.png" alt="profile" /></div>
+    <div class="ttobot-name">해나 라스커</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">(소리 내어 웃는다. 엉성하게 다친 모양을 흉내 내던 걸음걸이가 정상적으로 돌아온다.) 어깨 맞출 수 있어요?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 26일 오후 11:21</div>
+  </div>
+
+<div class="ttobot-status" data-account="@A_0044">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/765/853/920/568/original/6e3458b9bacdaaec.png" alt="profile" /></div>
+    <div class="ttobot-name">제일린 리우</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">이게 재밌는 상황이 아니잖습니까. (거의 투덜거림에 가깝다. 해나를 본다.) 네. (확인하듯 묻는다.) ⋯정말로요?</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 27일 오전 04:32</div>
+  </div>
+
+<div class="ttobot-status" data-account="@O_Hayne">
+  <div class="ttobot-avatar-wrapper">
+    <div class="ttobot-avatar"><img src="https://shao.life/system/accounts/avatars/117/285/803/244/623/547/original/b8b33cbeaa0a7c23.png" alt="profile" /></div>
+    <div class="ttobot-name">해나 라스커</div>
+  </div>
+  <div class="ttobot-content">
+    <div class="ttobot-content-text">한쪽 팔을 몸통에 딱 붙인 채 본부까지 가는 꼴은 너무 웃길 것 같아서요. 왜 안 내켜 하시는지는 모르겠는데, 좀 도와주시죠.</div>
+    
+  </div>
+  <div class="ttobot-time">2026년 9월 27일 오후 03:48</div>
+  </div>
+  <script src="../search.js"></script>
+  <script src="../manifest.js"></script>
+  <script src="../theme.js"></script>
+</body>
+</html>

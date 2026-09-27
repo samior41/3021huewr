@@ -1,0 +1,830 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+:root {
+  --radius: 10px;
+  --font-sans: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --max-width: 52rem;
+
+  --bg-page: #f3f5f7;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f7f9fb;
+  --border: #e1e6ec;
+  --text: #1b2733;
+  --text-muted: #5d6a78;
+  --shadow: 0 1px 3px rgba(27, 39, 51, 0.07);
+  --accent-__LEFT_ID__: __LEFT_COLOR_LIGHT__;
+  --accent-__RIGHT_ID__: __RIGHT_COLOR_LIGHT__;
+  --accent-point: #4c5fd7;
+  --on-point: #ffffff;
+  --on-__LEFT_ID__: __LEFT_ON_LIGHT__;
+  --on-__RIGHT_ID__: __RIGHT_ON_LIGHT__;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg-page: #0d141d;
+    --bg-card: #151d28;
+    --bg-card-alt: #1a2430;
+    --border: #283443;
+    --text: #e3eaf3;
+    --text-muted: #93a1b3;
+    --shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    --accent-__LEFT_ID__: __LEFT_COLOR_DARK__;
+    --accent-__RIGHT_ID__: __RIGHT_COLOR_DARK__;
+    --accent-point: #8b9bfa;
+    --on-point: #0d141d;
+    --on-__LEFT_ID__: __LEFT_ON_DARK__;
+    --on-__RIGHT_ID__: __RIGHT_ON_DARK__;
+  }
+}
+
+:root[data-theme="light"] {
+  --bg-page: #f3f5f7;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f7f9fb;
+  --border: #e1e6ec;
+  --text: #1b2733;
+  --text-muted: #5d6a78;
+  --shadow: 0 1px 3px rgba(27, 39, 51, 0.07);
+  --accent-__LEFT_ID__: __LEFT_COLOR_LIGHT__;
+  --accent-__RIGHT_ID__: __RIGHT_COLOR_LIGHT__;
+  --accent-point: #4c5fd7;
+  --on-point: #ffffff;
+  --on-__LEFT_ID__: __LEFT_ON_LIGHT__;
+  --on-__RIGHT_ID__: __RIGHT_ON_LIGHT__;
+}
+
+:root[data-theme="dark"] {
+  --bg-page: #0d141d;
+  --bg-card: #151d28;
+  --bg-card-alt: #1a2430;
+  --border: #283443;
+  --text: #e3eaf3;
+  --text-muted: #93a1b3;
+  --shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  --accent-__LEFT_ID__: __LEFT_COLOR_DARK__;
+  --accent-__RIGHT_ID__: __RIGHT_COLOR_DARK__;
+  --accent-point: #8b9bfa;
+  --on-point: #0d141d;
+  --on-__LEFT_ID__: __LEFT_ON_DARK__;
+  --on-__RIGHT_ID__: __RIGHT_ON_DARK__;
+}
+
+:root {
+  --mark-bg: color-mix(in oklab, var(--accent-point) 32%, var(--bg-card));
+  --mark-text: var(--text);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  padding: 1.5rem 1rem 3rem;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg-page);
+  min-height: 100vh;
+}
+
+.ttobot-log {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* —— message card —— */
+.ttobot-status {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.5rem 0.85rem;
+  padding: 1rem 1.1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  border-left: 4px solid var(--border);
+}
+
+.ttobot-status:nth-child(even) {
+  background: var(--bg-card-alt);
+}
+
+.ttobot-status[data-account="__RIGHT_ACCOUNT__"] {
+  border-left-color: var(--accent-__RIGHT_ID__);
+}
+
+.ttobot-status[data-account="__LEFT_ACCOUNT__"] {
+  border-left-color: var(--accent-__LEFT_ID__);
+}
+
+/* avatar column */
+.ttobot-avatar-wrapper {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 3.5rem;
+}
+
+.ttobot-avatar {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--bg-card-alt);
+}
+
+.ttobot-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ttobot-name {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.25;
+  max-width: 4.5rem;
+  word-break: keep-all;
+  color: var(--text-muted);
+}
+
+.ttobot-status[data-account="__RIGHT_ACCOUNT__"] .ttobot-name {
+  color: var(--accent-__RIGHT_ID__);
+}
+
+.ttobot-status[data-account="__LEFT_ACCOUNT__"] .ttobot-name {
+  color: var(--accent-__LEFT_ID__);
+}
+
+/* content */
+.ttobot-content {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+
+.ttobot-content-text {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.75;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  text-align: justify;
+}
+
+/* 첨부 이미지 */
+.ttobot-media {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 11rem), 1fr));
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.ttobot-media:empty {
+  display: none;
+}
+
+.ttobot-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 24rem;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 3px);
+  background: var(--bg-card-alt);
+}
+
+/* timestamp */
+.ttobot-time {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.01em;
+  padding-top: 0.15rem;
+  border-top: 1px dashed var(--border);
+  margin-top: 0.15rem;
+}
+
+@media (min-width: 640px) {
+  body {
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  .ttobot-status {
+    padding: 1.15rem 1.25rem;
+    gap: 0.6rem 1rem;
+  }
+
+  .ttobot-avatar {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+body.reader-page {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.reader {
+  display: grid;
+  grid-template-columns: minmax(14rem, 17rem) minmax(0, 1fr) minmax(14rem, 17rem);
+  height: 100%;
+  background: var(--bg-card);
+}
+
+/* —— 좌우: 캐릭터 —— */
+.reader-side {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 0.9rem 0.75rem 0;
+}
+
+.reader-side[data-character="__LEFT_ID__"] {
+  --character: var(--accent-__LEFT_ID__);
+}
+
+.reader-side[data-character="__RIGHT_ID__"] {
+  --character: var(--accent-__RIGHT_ID__);
+}
+
+.reader-portrait {
+  flex: 0 0 auto;
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  cursor: pointer;
+  background: var(--character) center/cover no-repeat;
+  border: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.reader-portrait::after {
+  content: "이미지 넣기\A권장 480 × 640 (3:4)";
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 0.5rem;
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.7;
+  text-align: center;
+  white-space: pre-line;
+  color: var(--on-point);
+  opacity: 0.9;
+}
+
+.reader-portrait[data-set="true"]::after {
+  content: "";
+  opacity: 0;
+  transition: opacity 0.15s;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.reader-portrait[data-set="true"]:hover::after {
+  content: "이미지 바꾸기\A권장 480 × 640 (3:4)";
+  color: #fff;
+  opacity: 1;
+}
+
+.reader-name {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.7rem 0 0.6rem;
+}
+
+.reader-name::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 5px;
+  height: 1.2rem;
+  border-radius: 2px;
+  background: var(--character);
+}
+
+.reader-name b {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader-side[data-side="right"] .reader-name {
+  flex-direction: row-reverse;
+}
+
+.reader-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-bottom: 4.5rem;
+  -ms-overflow-style: none;
+}
+
+.reader-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.reader-month {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  margin: 0.6rem 0 0.35rem;
+  padding: 0.25rem 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  background: var(--bg-card);
+}
+
+.reader-month:first-child {
+  margin-top: 0;
+}
+
+.reader-none {
+  padding: 1.2rem 0.4rem;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.reader-item {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 0.2rem 0.6rem;
+  width: 100%;
+  padding: 0.6rem 0.5rem;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.reader-item:hover {
+  background: color-mix(in oklab, var(--text) 5%, var(--bg-card));
+}
+
+.reader-item[aria-current="true"] {
+  background: color-mix(in oklab, var(--text) 9%, var(--bg-card));
+}
+
+.reader-avatar {
+  grid-row: 1 / 3;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 33%;
+  background: var(--bg-card-alt) center/cover no-repeat;
+}
+
+.reader-line {
+  grid-column: 2 / 4;
+  grid-row: 1;
+  font-size: 0.84rem;
+  font-weight: 500;
+  line-height: 1.45;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.reader-when {
+  grid-column: 2;
+  grid-row: 2;
+  align-self: center;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader-badge {
+  grid-column: 3;
+  grid-row: 2;
+  justify-self: end;
+  align-self: center;
+  min-width: 1.3rem;
+  padding: 0.05rem 0.35rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--on-point);
+  background: var(--character);
+  border-radius: 999px;
+}
+
+.reader-center {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+.reader-banner {
+  position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: end center;
+  height: 9.5rem;
+  overflow: hidden;
+}
+
+.reader-banner-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  padding: 0;
+  cursor: pointer;
+  background: var(--bg-card-alt) center/cover no-repeat;
+  border: 0;
+}
+
+.reader-banner-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--bg-card) 15%, transparent) 0%,
+    color-mix(in oklab, var(--bg-card) 55%, transparent) 45%,
+    var(--bg-card) 100%
+  );
+}
+
+.reader-banner-image:not([data-set="true"])::before,
+.reader-banner-image[data-set="true"]:hover::before {
+  content: "헤더 이미지 넣기 · 권장 1280 × 320 (4:1)";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.reader-banner-image[data-set="true"]:hover::before {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.reader-banner-image:hover {
+  filter: brightness(1.03);
+}
+
+.reader-pair {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0.9rem;
+  padding: 0.2rem 0.5rem;
+  font: inherit;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-indent: 0.28em;
+  color: var(--text);
+  background: none;
+  border: 0;
+  border-radius: 7px;
+  cursor: text;
+}
+
+.reader-pair:hover {
+  background: color-mix(in oklab, var(--text) 8%, transparent);
+}
+
+.reader-pair-input {
+  position: relative;
+  z-index: 1;
+  width: min(20rem, 80%);
+  margin-bottom: 0.9rem;
+  padding: 0.2rem 0.5rem;
+  font: inherit;
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: 0.28em;
+  text-align: center;
+  color: var(--text);
+  background: var(--bg-card);
+  border: 1px solid var(--accent-point);
+  border-radius: 7px;
+}
+
+.reader-search-slot:not(:empty) {
+  position: relative;
+  z-index: 20;
+  flex: 0 0 auto;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.reader-search-slot .enty-search {
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.reader-search-slot .enty-search-panel {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  top: calc(100% - 0.3rem);
+  max-height: min(30rem, 65vh);
+  overflow-y: auto;
+  padding: 0.8rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.22);
+}
+
+.reader-thread {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--bg-page);
+}
+
+.reader-thread-head {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.reader-thread-head h2 {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.reader-thread-head span {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.reader-back {
+  display: none;
+  padding: 0.3rem 0.6rem;
+  font: inherit;
+  font-size: 0.8rem;
+  color: var(--text);
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.reader-frame {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 0;
+  border: 0;
+  background: var(--bg-page);
+}
+
+.reader-empty {
+  flex: 0 0 auto;
+  padding: 0.9rem 1.1rem;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+@media (max-width: 63.99rem) {
+  body.reader-page {
+    height: auto;
+    overflow: auto;
+  }
+
+  .reader {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .reader-center {
+    order: -1;
+    border: 0;
+  }
+
+  .reader-side {
+    border-top: 1px solid var(--border);
+    padding-bottom: 1rem;
+  }
+
+  .reader-portrait {
+    aspect-ratio: 16 / 9;
+  }
+
+  .reader-scroll {
+    overflow: visible;
+    padding-bottom: 0;
+  }
+
+  .reader-thread {
+    display: none;
+  }
+
+  .reader[data-open="true"] .reader-thread {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+  }
+
+  .reader-back {
+    display: block;
+  }
+}
+
+html.in-pane body,
+html.in-pane body .ttobot-log {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0.75rem 1rem 4rem;
+}
+
+html.in-pane body .ttobot-log {
+  padding: 0;
+}
+
+html.in-pane body .ttobot-status {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.45rem;
+  padding: 0.2rem 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+html.in-pane body .ttobot-status:nth-child(even) {
+  background: none;
+}
+
+html.in-pane body .ttobot-status[data-account="__LEFT_ACCOUNT__"] {
+  flex-direction: row;
+  --bubble: var(--accent-__LEFT_ID__);
+  --bubble-text: var(--on-__LEFT_ID__);
+}
+
+html.in-pane body .ttobot-status[data-account="__RIGHT_ACCOUNT__"] {
+  flex-direction: row-reverse;
+  --bubble: var(--accent-__RIGHT_ID__);
+  --bubble-text: var(--on-__RIGHT_ID__);
+}
+
+html.in-pane body .ttobot-avatar-wrapper {
+  flex: 0 0 auto;
+  gap: 0.2rem;
+  min-width: 0;
+  width: 2.6rem;
+}
+
+html.in-pane body .ttobot-avatar {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+html.in-pane body .ttobot-name {
+  max-width: 3.4rem;
+  font-size: 0.62rem;
+  line-height: 1.2;
+}
+
+html.in-pane body .ttobot-content {
+  position: relative;
+  flex: 0 1 auto;
+  max-width: min(30rem, 72%);
+  padding: 0.6rem 0.85rem;
+  color: var(--bubble-text);
+  background: var(--bubble);
+  border-radius: 10px;
+}
+
+html.in-pane body .ttobot-content::before {
+  content: "";
+  position: absolute;
+  bottom: 0.6rem;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+}
+
+html.in-pane body .ttobot-status[data-account="__LEFT_ACCOUNT__"] .ttobot-content::before {
+  left: -10px;
+  border-right-color: var(--bubble);
+  border-left-width: 4px;
+}
+
+html.in-pane body .ttobot-status[data-account="__RIGHT_ACCOUNT__"] .ttobot-content::before {
+  right: -10px;
+  border-left-color: var(--bubble);
+  border-right-width: 4px;
+}
+
+html.in-pane body .ttobot-content-text {
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+html.in-pane body .ttobot-media {
+  margin-top: 0.5rem;
+}
+
+html.in-pane body .ttobot-media img {
+  max-height: 18rem;
+}
+
+html.in-pane body .ttobot-time {
+  flex: 0 0 auto;
+  align-self: flex-end;
+  margin: 0;
+  padding: 0 0 0.15rem;
+  border: 0;
+  font-size: 0.67rem;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+html.in-pane body .ttobot-time span {
+  display: block;
+}
+
+html.in-pane body .ttobot-status[data-account="__LEFT_ACCOUNT__"] .ttobot-time {
+  text-align: left;
+}
+
+html.in-pane body .ttobot-status[data-account="__RIGHT_ACCOUNT__"] .ttobot-time {
+  text-align: right;
+}
+
+@media (min-width: 640px) {
+  html.in-pane body {
+    padding: 0.75rem 1.25rem 4rem;
+  }
+
+  html.in-pane body .ttobot-avatar {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+}

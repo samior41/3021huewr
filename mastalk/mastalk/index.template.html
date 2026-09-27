@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 홈페이지 명은 title 안의 글자를 수정해주세요. -->
+  <title>ENTY</title>
+__BOOT_SNIPPET__
+  <link rel="stylesheet" href="style/ttobot.css">
+</head>
+<body class="reader-page">
+  <div class="reader" id="reader" data-open="false">
+
+    <aside class="reader-side" data-character="__LEFT_ID__" data-side="left">
+      <button type="button" class="reader-portrait" data-portrait="__LEFT_ID__"
+              aria-label="__LEFT_LABEL__ 이미지 바꾸기"></button>
+      <div class="reader-name"><b data-name="__LEFT_ID__">__LEFT_LABEL__</b></div>
+      <div class="reader-scroll" data-list="__LEFT_ID__"></div>
+    </aside>
+
+    <main class="reader-center">
+      <header class="reader-banner">
+        <button type="button" class="reader-banner-image" data-banner
+                aria-label="헤더 이미지 바꾸기"></button>
+        <button type="button" class="reader-pair" id="reader-pair"
+                aria-label="페어명 수정">ENTY</button>
+      </header>
+
+      <div class="reader-search-slot"></div>
+
+      <div class="reader-thread">
+        <div class="reader-thread-head">
+          <button type="button" class="reader-back" id="reader-back">← 목록</button>
+          <h2 id="reader-title">스레드</h2>
+          <span id="reader-sub"></span>
+        </div>
+        <div class="reader-empty" id="reader-empty">양쪽에서 대화를 고르면 여기에 열립니다.</div>
+        <iframe class="reader-frame" id="reader-frame" title="대화 스레드" hidden></iframe>
+      </div>
+    </main>
+
+    <aside class="reader-side" data-character="__RIGHT_ID__" data-side="right">
+      <button type="button" class="reader-portrait" data-portrait="__RIGHT_ID__"
+              aria-label="__RIGHT_LABEL__ 이미지 바꾸기"></button>
+      <div class="reader-name"><b data-name="__RIGHT_ID__">__RIGHT_LABEL__</b></div>
+      <div class="reader-scroll" data-list="__RIGHT_ID__"></div>
+    </aside>
+
+  </div>
+
+  <input type="file" accept="image/*" hidden id="reader-picker">
+
+  <script src="search.js"></script>
+  <script src="manifest.js"></script>
+  <script src="reader.js"></script>
+  <script src="theme.js"></script>
+</body>
+</html>

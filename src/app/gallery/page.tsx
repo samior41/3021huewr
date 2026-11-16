@@ -15,6 +15,7 @@ import { EditableDesc, PageTitle } from '@/components/ui/PageText';
 import { useMainStore } from '@/lib/mainStore';
 import { useCardSort, mergeOrder } from '@/lib/cardSort';
 import { useMenuSettings, canGalleryWrite, MenuPerm } from '@/lib/menuStore';
+import { useBoardSettings } from '@/lib/boardStore'; // 💡 누락되었던 useBoardSettings 임포트 추가
 const FOLD_LABEL = { spoiler: '스포일러', adult: '수위 주의' };
 
 function BackupPageInner() {
@@ -74,7 +75,7 @@ function BackupPageInner() {
   const PER = view === 'gal' ? 12 : 20;
   const [page, setPage] = useState(1);
   const pages = Math.max(1, Math.ceil(visible.length / PER));
-  const cur = Math.min(page, pages);      // 검색·보기 전환으로 줄면 마지막 장으로 당긴다
+  const cur = Math.min(page, pages);       // 검색·보기 전환으로 줄면 마지막 장으로 당긴다
   const start = (cur - 1) * PER;
   const paged = visible.slice(start, start + PER);
   useEffect(() => { setPage(1); }, [q, view]);   // 검색어·보기를 바꾸면 첫 장부터

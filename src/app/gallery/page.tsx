@@ -15,7 +15,7 @@ import { EditableDesc, PageTitle } from '@/components/ui/PageText';
 import { useMainStore } from '@/lib/mainStore';
 import { useCardSort, mergeOrder } from '@/lib/cardSort';
 import { useMenuSettings, canGalleryWrite, MenuPerm } from '@/lib/menuStore';
-import { useBoardSettings } from '@/lib/boardStore'; // 💡 누락되었던 useBoardSettings 임포트 추가
+import { useBoardSettings } from '@/lib/boardStore';
 const FOLD_LABEL = { spoiler: '스포일러', adult: '수위 주의' };
 
 function BackupPageInner() {
@@ -42,7 +42,7 @@ function BackupPageInner() {
     (permUpload === 'guest') || 
     (permUpload === 'member' && !!user);
   const { st: boardSet } = useBoardSettings(); // 유형 뱃지 색 (환경설정 > 게시판 관리)
-  const typeBadge = (t: 'log' | 'single' | 'vlist') => boardSet.gallery.find(b => b.id === t);
+  const typeBadge = (t: 'log' | 'single' | 'vlist') => boardSet.gallery.find((b: any) => b.id === t);
   const [q, setQ] = useState('');
   const [unveiled, setUnveiled] = useState<Record<string, boolean>>({});
   /* 우클릭 → 썸네일 수정 (v2.0 사용자 요청) — 리스트에서 바로 대표 이미지 크롭을 고친다.

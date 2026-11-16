@@ -362,17 +362,13 @@ ${rows}
               <div className="rp-msgs" ref={msgsRef}>
                 {(() => {
                   const currentMsgs = msgsOf(sel);
-                  // 현재 방에 존재하는 캐릭터 ID 목록
                   const roomCharIds = Array.from(new Set(currentMsgs.map(x => x.charId).filter(Boolean)));
                   
-                  // 현재 유저가 권한/소유권을 가진 방 내 캐릭터 수 계산
                   const myGrantedCharCount = roomCharIds.filter(id => {
                     const c = rpChars.find(item => item.id === id);
                     return c ? (!!charGrant(c, user.id) || (!!c.own && isAdmin)) : false;
                   }).length;
 
-                  // 방 안의 모든 캐릭터가 '내 캐릭터'로 판정되거나(관리자 계정 등), 
-                  // 권한 판별이 어려운 경우 작성자(m.authorId) 기준으로 정렬 전환
                   const fallbackToAuthor = myGrantedCharCount === 0 || myGrantedCharCount >= roomCharIds.length;
 
                   return currentMsgs.map(m => {
@@ -394,12 +390,10 @@ ${rows}
                     const ch = rpChars.find(c => c.id === m.charId);
                     const name = ch?.name ?? '';
 
-                    // 캐릭터 기준 소유/권한 여부
                     const hasGrant = ch
                       ? (!!charGrant(ch, user.id) || (!!ch.own && isAdmin))
                       : (!!m.charOwn && isAdmin);
 
-                    // 예외 상황(모두 내 캐릭터이거나 권한 없음)에서는 내가 직접 작성한 메시지(mine)를 우측 정렬
                     const rightSide = fallbackToAuthor ? mine : hasGrant;
 
                     return (
@@ -462,11 +456,8 @@ ${rows}
           )}
         </div>
 
-        <div className="panel tagside" style={{ padding: 16, alignSelf: 'start' }}>
         {/* 우측 상태 필터 — 진행중/완결 따로 보기 */}
-        {/* align-self는 CSS로 — PC 그리드에선 start(위 정렬), 모바일 세로 배치에선 stretch(전폭).
-            인라인 start가 남아 있으면 모바일에서 내용 폭만큼 쪼그라든다 (v2.0 사용자 제보) */}
-        <div className="panel tagside" style={{ padding: 16 }}>
+        <div className="panel tagside" style={{ padding: 16, alignSelf: 'start' }}>
           <h4>상태</h4>
           <div className={`tag ${fStatus === 'ongoing' ? 'on' : ''}`} onClick={() => setFStatus('ongoing')}>
             진행중 <small>{cntS('ongoing')}</small>
